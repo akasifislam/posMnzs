@@ -9,6 +9,6 @@ class SupplierController extends Controller
 {
     public function view()
     {
-        dd('dfbgndfkg');
+        return view('backend.supplier.view-supplier');
     }
 }
