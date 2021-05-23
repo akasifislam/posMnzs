@@ -56,6 +56,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview {{ (Str::startsWith(Route::currentRouteName(), 'suppliers')) ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-user"></i>
+            <p>
+              Manage Suppliers
+              <i class="fa fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('suppliers.view') }}" class="nav-link">
+                <i class="fa fa-user nav-icon"></i>
+                <p>View Suppliers</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         
       </ul>
     </nav>
