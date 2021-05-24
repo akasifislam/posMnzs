@@ -77,18 +77,6 @@
             </li>
           </ul>
         </li>
-
-
-
-
-
-
-
-
-
-
-
-
         <li class="nav-item has-treeview {{ ($prefix=='/customers')? 'menu-open':'' }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-cogs"></i>
@@ -102,6 +90,23 @@
               <a href="{{ route('customers.view') }}" class="nav-link {{ ($route=='customers.view') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-user"></i>
                 <p>view customer</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item has-treeview {{ ($prefix=='/units')? 'menu-open':'' }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-cogs"></i>
+            <p>
+              Manage Units
+              <i class="fa fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('units.view') }}" class="nav-link {{ ($route=='units.view')?'active':'' }}">
+                <i class="nav-icon fa fa-user"></i>
+                <p>View units</p>
               </a>
             </li>
           </ul>

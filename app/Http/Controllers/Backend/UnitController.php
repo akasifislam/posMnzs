@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Model\Customer;
-use App\Model\Supplier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class UnitController extends Controller
 {
     public function view()
     {
