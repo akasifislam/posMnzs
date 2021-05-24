@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/store', 'Backend\SupplierController@store')->name('suppliers.store');
         Route::get('/edit/{id}', 'Backend\SupplierController@edit')->name('suppliers.edit');
         Route::post('/update/{id}', 'Backend\SupplierController@update')->name('suppliers.update');
-        Route::get('/delete/{id}', 'Backend\SupplierController@delete')->name('suppliers.delete');
+        Route::get('/delete/{id}', 'Backend\SupplierController@destroy')->name('suppliers.delete');
     });
 });
 

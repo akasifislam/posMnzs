@@ -63,4 +63,12 @@ class SupplierController extends Controller
 
         return redirect()->route('suppliers.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
+
+
+    public function destroy(Request $request,$id)
+    {
+        $supplier = Supplier::find($id);
+        $supplier->delete();
+        return redirect()->route('suppliers.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+    }
 }
