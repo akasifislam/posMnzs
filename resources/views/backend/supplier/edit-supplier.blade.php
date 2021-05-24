@@ -20,24 +20,24 @@
                       
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('suppliers.store') }}" method="POST" id="myForm">
+                    <form action="{{ route('suppliers.update',$editData->id) }}" method="POST" id="myForm">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="name">Suplier Name</label>
-                                <input  value="{{ old('name') }}" type="text" class="form-control" name="name" id="name">
+                                <input  value="{{ (old('name')) ? old('name'): $editData->name }}" type="text" class="form-control" name="name" id="name">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="mobile_no">Mobile</label>
-                                <input type="tel" value="{{ old('mobile_no') }}" class="form-control" name="mobile_no" id="mobile_no">
+                                <input type="tel" value="{{ (old('mobile_no')) ? old('mobile_no'): $editData->mobile_no }}" class="form-control" name="mobile_no" id="mobile_no">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="address">Address</label>
-                                <input type="text" value="{{ old('address') }}" class="form-control" name="address" id="address">
+                                <input type="text" value="{{ (old('address')) ? old('address'): $editData->address }}" class="form-control" name="address" id="address">
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="email">Email</label>
-                                <input type="email" value="{{ old('email') }}" class="form-control" name="email" id="email">
+                                <input type="email" value="{{ (old('email')) ? old('email'): $editData->email }}" class="form-control" name="email" id="email">
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="submit" value="submit" class="btn btn-primary">
