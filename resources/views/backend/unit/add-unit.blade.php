@@ -15,7 +15,7 @@
                           Add Supplier
                           @endif
 
-                        <a class="btn btn-success btn-sm float-right" href="{{ route('units.view') }} "> <i class="fa fa-list"></i> Customer List</a>
+                        <a class="btn btn-success btn-sm float-right" href="{{ route('units.view') }} "> <i class="fa fa-list"></i> Unit List</a>
                       </h3>
                       
                   </div>

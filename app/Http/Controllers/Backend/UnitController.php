@@ -24,7 +24,7 @@ class UnitController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
         ]);
-        $supplier = Unit::create([
+        $unit = Unit::create([
             'name' => $request->name,
             'created_by' => Auth::user()->id,
         ]);
@@ -43,8 +43,8 @@ class UnitController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
         ]);
-        $supplier = Unit::find($id);
-        $supplier->update([
+        $unit = Unit::find($id);
+        $unit->update([
             'name' => $request->name,
             'updated_by' => Auth::user()->id,
         ]);
@@ -55,8 +55,8 @@ class UnitController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $supplier = Unit::find($id);
-        $supplier->delete();
+        $unit = Unit::find($id);
+        $unit->delete();
         return redirect()->route('units.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
 }
