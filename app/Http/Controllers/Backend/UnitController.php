@@ -3,70 +3,60 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UnitController extends Controller
 {
     public function view()
     {
-        $allData = Customer::orderBy('id', "DESC")->get();
-        return view('backend.customer.view-customer', compact('allData'));
+        $allData = Unit::orderBy('id', "DESC")->get();
+        return view('backend.unit.view-unit', compact('allData'));
     }
     public function add(Request $request)
     {
-        return view('backend.customer.add-customer');
+        return view('backend.unit.add-unit');
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|email',
-            'address' => 'required|string',
-            'mobile_no' => 'required',
         ]);
-        $supplier = Customer::create([
+        $supplier = Unit::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
             'created_by' => Auth::user()->id,
-            'mobile_no' => $request->mobile_no,
         ]);
 
-        return redirect()->route('customers.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+        return redirect()->route('units.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
 
     public function edit($id)
     {
-        $editData = Customer::find($id);
-        return view('backend.customer.edit-customer', compact('editData'));
+        $editData = Unit::find($id);
+        return view('backend.unit.edit-unit', compact('editData'));
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|email',
-            'address' => 'required|string',
-            'mobile_no' => 'required',
         ]);
-        $supplier = Customer::find($id);
+        $supplier = Unit::find($id);
         $supplier->update([
             'name' => $request->name,
-            'email' => $request->email,
-            'address' => $request->address,
             'updated_by' => Auth::user()->id,
-            'mobile_no' => $request->mobile_no,
         ]);
 
-        return redirect()->route('customers.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+        return redirect()->route('units.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
 
 
     public function destroy(Request $request, $id)
     {
-        $supplier = Customer::find($id);
+        $supplier = Unit::find($id);
         $supplier->delete();
-        return redirect()->route('customers.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+        return redirect()->route('units.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
 }
