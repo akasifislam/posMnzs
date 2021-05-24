@@ -89,7 +89,7 @@
 
 
 
-        <li class="nav-item has-treeview {{ ($prefix=='/profiles')? 'menu-open':'' }}">
+        <li class="nav-item has-treeview {{ ($prefix=='/customers')? 'menu-open':'' }}">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-cogs"></i>
             <p>
@@ -99,7 +99,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ route('profiles.view') }}" class="nav-link {{ ($route=='profiles.view')?'active':'' }}">
+              <a href="{{ route('customers.view') }}" class="nav-link {{ ($route=='customers.view') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-user"></i>
                 <p>view customer</p>
               </a>
