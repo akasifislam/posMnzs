@@ -12,7 +12,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // backend routing
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
     Route::prefix('users')->group(function () {
 
         Route::get('/view', 'Backend\UserController@view')->name('users.view');
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'Backend\UnitController@update')->name('units.update');
         Route::get('/delete/{id}', 'Backend\UnitController@destroy')->name('units.delete');
     });
-});
+// });
 
 
 
