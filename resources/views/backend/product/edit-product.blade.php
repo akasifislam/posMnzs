@@ -12,7 +12,7 @@
                           @if(isset($editData))
                           Edit Supplier 
                           @else
-                          Add Supplier
+                          Add Product
                           @endif
 
                         <a class="btn btn-success btn-sm float-right" href="{{ route('products.view') }} "> <i class="fa fa-list"></i> Supplier List</a>
@@ -24,24 +24,52 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-8">
-                                <label for="name">product Name</label>
-                                <input  value="{{ (old('name')) ? old('name'): $editData->name }}" type="text" class="form-control" name="name" id="name">
+                                <label for="name">Suplier Name</label>
+                                <select class="form-control" name="supplier_id" id="supplier_id">
+                                    <option value="">Select Supplier</option>
+                                    @foreach ($suppliers as $key => $supplier)
+                                        <option 
+                                        {{ 
+                                           ($editData->supplier_id==$supplier->id) ? 'selected' : ''
+                                        }}
+
+                                        value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="mobile_no">Mobile</label>
-                                <input type="tel" value="{{ (old('mobile_no')) ? old('mobile_no'): $editData->mobile_no }}" class="form-control" name="mobile_no" id="mobile_no">
+                            <div class="form-group col-md-8">
+                                <label for="name">Categories Name</label>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option
+                                    value="">Select Category</option>
+                                    @foreach ($categories as $key => $category)
+                                        <option
+                                        {{ 
+                                            ($editData->category_id==$category->id) ? 'selected' : ''
+                                        }}
+                                        value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="address">Address</label>
-                                <input type="text" value="{{ (old('address')) ? old('address'): $editData->address }}" class="form-control" name="address" id="address">
+                            <div class="form-group col-md-8">
+                                <label for="name">Unit Key</label>
+                                <select class="form-control" name="unit_id" id="unit_id">
+                                    <option value="">Select Unit</option>
+                                    @foreach ($units as $key => $unit)
+                                        <option
+                                        {{ 
+                                            ($editData->unit_id==$unit->id) ? 'selected' : ''
+                                        }}
+                                         value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="email">Email</label>
-                                <input type="email" value="{{ (old('email')) ? old('email'): $editData->email }}" class="form-control" name="email" id="email">
+                            <div class="form-group col-md-8">
+                                <label for="name">Product Name</label>
+                                <input placeholder="Product Name" type="text" value="{{ $editData->name }}" class="form-control" name="name" id="name">
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="submit" value="submit" class="btn btn-primary">
-                                {{-- <button type="submit" class="btn btn-sm {{ (@$editData)?'btn-primary':'btn-success' }}">{{ (@$editData)?'Update':'Submit' }}</button>    --}}
                             </div>
                         </div>    
                     </form>
@@ -63,13 +91,13 @@
                 name: {
                 required: true,
                 },
-                mobile_no: {
+                supplier_id: {
                 required: true,
                 },
-                email: {
+                category_id: {
                 required: true,
                 },
-                address: {
+                unit_id: {
                 required: true,
                 },
             },
@@ -77,9 +105,6 @@
               
                 name: {
                 required: "Please enter name",
-                },
-                mobile_no: {
-                required: "Please enter mobile number",
                 },
             },
             errorElement: 'span',

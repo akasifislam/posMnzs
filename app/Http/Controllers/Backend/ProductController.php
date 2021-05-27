@@ -47,18 +47,27 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $editData = Product::find($id);
-        return view('backend.product.edit-product', compact('editData'));
+        $data['editData'] = Product::find($id);
+        $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
+        $data['categories'] = Category::orderBy('id', 'DESC')->get();
+        $data['units'] = Unit::orderBy('id', 'DESC')->get();
+        return view('backend.product.edit-product', $data);
     }
 
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string',
+            'supplier_id' => 'required',
+            'category_id' => 'required',
+            'unit_id' => 'required',
         ]);
         $unit = Product::find($id);
         $unit->update([
             'name' => $request->name,
+            'supplier_id' => $request->supplier_id,
+            'category_id' => $request->category_id,
+            'unit_id' => $request->unit_id,
             'updated_by' => Auth::user()->id,
         ]);
 
