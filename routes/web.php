@@ -22,8 +22,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'Backend\UserController@update')->name('users.update');
         Route::get('/delete/{id}', 'Backend\UserController@delete')->name('users.delete');
     });
-
-
     Route::prefix('profiles')->group(function () {
 
         Route::get('/store', 'Backend\ProfileController@view')->name('profiles.view');
@@ -32,9 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/password/view', 'Backend\ProfileController@passwordView')->name('profiles.password.view');
         Route::post('/password/update', 'Backend\ProfileController@passwordUpdate')->name('profiles.password.update');
     });
-
     // supplies middleware 
-
     Route::prefix('suppliers')->group(function () {
 
         Route::get('/view', 'Backend\SupplierController@view')->name('suppliers.view');
@@ -44,7 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'Backend\SupplierController@update')->name('suppliers.update');
         Route::get('/delete/{id}', 'Backend\SupplierController@destroy')->name('suppliers.delete');
     });
-
     // customer
     Route::prefix('customers')->group(function () {
 
@@ -81,6 +76,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'Backend\ProductController@edit')->name('products.edit');
         Route::post('/update/{id}', 'Backend\ProductController@update')->name('products.update');
         Route::get('/delete/{id}', 'Backend\ProductController@destroy')->name('products.delete');
+    });
+    // purchase
+    Route::prefix('purchase')->group(function () {
+        Route::get('/view', 'Backend\PurchaseController@view')->name('purchase.view');
+        Route::get('/add', 'Backend\PurchaseController@add')->name('purchase.add');
+        Route::post('/store', 'Backend\PurchaseController@store')->name('purchase.store');
+        Route::get('/edit/{id}', 'Backend\PurchaseController@edit')->name('purchase.edit');
+        Route::post('/update/{id}', 'Backend\PurchaseController@update')->name('purchase.update');
+        Route::get('/delete/{id}', 'Backend\PurchaseController@destroy')->name('purchase.delete');
     });
 });
 
