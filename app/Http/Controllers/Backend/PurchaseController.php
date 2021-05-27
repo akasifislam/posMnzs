@@ -3,21 +3,27 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Category;
+use App\Model\Product;
+use App\Model\Purchase;
+use App\Model\Supplier;
+use App\Model\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
     public function view()
     {
-        $allData = Product::orderBy('id', "DESC")->get();
-        return view('backend.product.view-product', compact('allData'));
+        $allData = Purchase::orderBy('id', "DESC")->get();
+        return view('backend.purchase.view-purchase', compact('allData'));
     }
     public function add(Request $request)
     {
         $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
-        return view('backend.product.add-product', $data);
+        return view('backend.purchase.add-purchase', $data);
     }
 
     public function store(Request $request)
@@ -46,7 +52,7 @@ class PurchaseController extends Controller
         $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
-        return view('backend.product.edit-product', $data);
+        return view('backend.purchase.edit-purchase', $data);
     }
 
     public function update(Request $request, $id)
