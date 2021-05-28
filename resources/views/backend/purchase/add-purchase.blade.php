@@ -23,31 +23,34 @@
                     {{-- <form action="{{ route('purchase.store') }}" method="POST" id="myForm">
                         @csrf --}}
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="name">Date</label>
+                            <div class="form-group col-md-4">
+                                <label for="datepicker">Date</label>
                                 <input type="text" name="date" id="datepicker" class="form-control datepicker" placeholder="MM-DD-YYYY" readonly>
                             </div>
+                            <div class="form-group col-md-8">
+                                <label for="purchase">Purchase No</label>
+                                <input type="text" name="purchase" id="purchase" class="form-control" placeholder="Purchase No">
+                            </div>
                             <div class="form-group col-md-6">
-                                <label for="name">Categories Name</label>
+                                <label for="supplier_id">Supplier Name</label>
+                                <select class="form-control" name="supplier_id" id="supplier_id">
+                                    <option value="">Select Supplier</option>
+                                    @foreach ($suppliers as $key => $supplier)
+                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                    @endforeach 
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="category_id">Categories Name</label>
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value="">Select Category</option>
-                                    @foreach ($categories as $key => $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="name">Unit Key</label>
-                                <select class="form-control" name="unit_id" id="unit_id">
-                                    <option value="">Select Unit</option>
-                                    @foreach ($units as $key => $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                    @endforeach
+                                <label for="product_id">Product Name</label>
+                                <select class="form-control" name="product_id" id="product_id">
+                                    <option value="">select product</option>
                                 </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="name">Product Name</label>
-                                <input placeholder="Product Name" type="text" value="{{ old('name') }}" class="form-control" name="name" id="name">
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="submit" value="submit" class="btn btn-primary">
@@ -105,11 +108,11 @@
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
     <script>
-        $(function(){
-            $(".datepicker").datepicker();
-        });
-        // $(function () {
-        //     $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
+        // $(function(){
+        //     $(".datepicker").datepicker();
         // });
+        $(function () {
+            $('#datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
+        });
     </script>
 @endsection
