@@ -86,6 +86,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/update/{id}', 'Backend\PurchaseController@update')->name('purchase.update');
         Route::get('/delete/{id}', 'Backend\PurchaseController@destroy')->name('purchase.delete');
     });
+
+    Route::get('/get-category', 'Backend\DefaultController@getCategory')->name('app.get.category');
 });
 
 

@@ -28,8 +28,8 @@
                                 <input type="text" name="date" id="datepicker" class="form-control datepicker" placeholder="MM-DD-YYYY" readonly>
                             </div>
                             <div class="form-group col-md-8">
-                                <label for="purchase">Purchase No</label>
-                                <input type="text" name="purchase" id="purchase" class="form-control" placeholder="Purchase No">
+                                <label for="purchase_no">Purchase No</label>
+                                <input type="text" name="purchase_no" id="purchase_no" class="form-control" placeholder="Purchase No">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="supplier_id">Supplier Name</label>
@@ -53,7 +53,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="submit" value="submit" class="btn btn-primary">
+                                <i class="btn btn-primary fa fa-plus addeventmore"> Add Item </i>
                             </div>
                         </div>    
                     {{-- </form> --}}
@@ -66,7 +66,25 @@
        
     </section>
     <!-- /.content -->
-
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('change','#supplier_id',function(){
+                var supplier_id = $(this).val();
+                $.ajax({
+                    url: "{{ route('app.get.category') }}" ,
+                    type: "GET",
+                    data:{supplier_id:supplier_id},
+                    success: function(data) {
+                        var html = '<option value="">Select Category</option>';
+                        $.each(data,function(key,v) {
+                            html += '<option value="'+v.category_id+'">'+v.category_id+'</option>'
+                        });
+                        $('#category_id').html(html);
+                    }
+                });
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#myForm').validate({
