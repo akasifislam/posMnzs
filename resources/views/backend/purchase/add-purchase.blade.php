@@ -77,7 +77,7 @@
                     success: function(data) {
                         var html = '<option value="">Select Category</option>';
                         $.each(data,function(key,v) {
-                            html += '<option value="'+v.category_id+'">'+v.category_id+'</option>'
+                            html += '<option value="'+v.category_id+'">'+v.category.name+'</option>'
                         });
                         $('#category_id').html(html);
                     }
