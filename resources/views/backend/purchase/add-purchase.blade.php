@@ -242,9 +242,6 @@
             $('#myForm').validate({
             rules: {
                
-                name: {
-                required: true,
-                },
                 supplier_id: {
                 required: true,
                 },
@@ -257,9 +254,9 @@
             },
             messages: {
               
-                name: {
-                required: "Please enter name",
-                },
+                // name: {
+                // required: "Please enter name",
+                // },
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {
