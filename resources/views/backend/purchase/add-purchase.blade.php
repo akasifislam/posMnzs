@@ -146,11 +146,11 @@
             var html = template(data);
             $("#addRow").append(html);
             });
-            $(document).on("click","removeeventmore",function(event) {
+            $(document).on("click",".removeeventmore",function(event) {
             $(this).closest(".delete_add_more_item").remove();
             totalAmountPrice();
         });
-            $(document).on("keyup click",'.unit_price,.buyingprice,.buying_qty',function() {
+            $(document).on("keyup click",'.unit_price,.buying_qty',function() {
                 var unit_price = $(this).closest("tr").find("input.unit_price").val();
                 var qty = $(this).closest("tr").find("input.buying_qty").val();
                 var total = unit_price * qty;
@@ -158,8 +158,7 @@
                 totalAmountPrice();
             });
             // calcularate sum of amount
-            function totalAmountPrice()
-            {
+            function totalAmountPrice(){
                 var sum=0;
                 $(".buying_price").each(function() {
                     var value = $(this).val();
@@ -174,28 +173,28 @@
     </script>
     <script id="document-template" type="text/x-handlebars-template">
         <tr class="delete_add_more_item" id="delete_add_more_item">
-            <input type="hidden" name="data[]" value="@{{ data }}">
-            <input type="hidden" name="purchase_no[]" value="@{{ purchase_no }}">
-            <input type="hidden" name="supplier_id[]" value="@{{ supplier_id }}">
+            <input type="hidden" name="data[]" value="@{{data}}">
+            <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
+            <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
             <td>
-                <input type="hidden" name="category_id[]" value="@{{ category_id }}">
-                @{{ category_id }}
+                <input type="hidden" name="category_id[]" value="@{{category_id}}">
+                @{{category_name}}
             </td>
             <td>
-                <input type="hidden" name="product_id[]" value="@{{ product_id }}">
-                @{{ product_id }}
+                <input type="hidden" name="product_id[]" value="@{{product_id}}">
+                @{{ product_name }}
             </td>
             <td>
                 <input type="number" min="1" class="form-control form-control-sm text-right buying_qty" name="buying_qty[]" value="1">
             </td>
             <td>
-                <input type="number" min="1" class="form-control form-control-sm text-right unit_price[]" name="unit_price[]" value="">
+                <input type="number" min="1" class="form-control form-control-sm text-right unit_price" name="unit_price[]" value="">
             </td>
             <td>
                 <input type="text" name="description[]" class="form-control form-control-sm">
             </td>
             <td>
-                <input name="description[]" class="form-control form-control-sm text-right buying_price" name="buying_price" value="0" readonly>
+                <input class="form-control form-control-sm text-right buying_price" name="buying_price[]" value="0" readonly>
             </td>
             <td> <i class="btn btn-danger btn-sm fa fa-window-close removeeventmore"></i> </td>
         </tr>
