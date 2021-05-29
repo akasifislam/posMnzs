@@ -53,10 +53,45 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-12">
-                                <i class="btn btn-primary fa fa-plus addeventmore"> Add Item </i>
+                                <a class="btn btn-primary addeventmore text-white"><i class="fa fa-plus"> Add Item </i></a>
+                                
                             </div>
                         </div>    
                     {{-- </form> --}}
+                  </div>
+                  <div class="card-body">
+                    <form action="{{ route('purchase.store') }}" method="POST" id="myForm">
+                        @csrf
+                        <table class="table-sm table-bordered table-striped table-hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Product Name</th>
+                                    <th>pcs/kg</th>
+                                    <th>Unit Price</th>
+                                    <th>Description</th>
+                                    <th>Total Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody name="addRow" id="addRow">
+
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td>
+                                        <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" id="storeButton">Purchase Store</button>
+                        </div>
+                        </form>
                   </div>
               </div>
           </section>
@@ -66,6 +101,34 @@
        
     </section>
     <!-- /.content -->
+    <script id="document-template" type="text/x-handlebars-template">
+        <tr class="delete_add_more_item" id="delete_add_more_item">
+            <input type="hidden" name="data[]" value="@{{ data }}">
+            <input type="hidden" name="purchase_no[]" value="@{{ purchase_no }}">
+            <input type="hidden" name="supplier_id[]" value="@{{ supplier_id }}">
+            <td>
+                <input type="hidden" name="category_id[]" value="@{{ category_id }}">
+                @{{ category_id }}
+            </td>
+            <td>
+                <input type="hidden" name="product_id[]" value="@{{ product_id }}">
+                @{{ product_id }}
+            </td>
+            <td>
+                <input type="number" min="1" class="form-control form-control-sm text-right buying_qty" name="buying_qty[]" value="1">
+            </td>
+            <td>
+                <input type="number" min="1" class="form-control form-control-sm text-right unit_price[]" name="unit_price[]" value="">
+            </td>
+            <td>
+                <input type="text" name="description[]" class="form-control form-control-sm">
+            </td>
+            <td>
+                <input name="description[]" class="form-control form-control-sm text-right buying_price" name="buying_price" value="0" readonly>
+            </td>
+            <td> <i class="btn btn-danger btn-sm fa fa-window-close removeeventmore"></i> </td>
+        </tr>
+    </script>
     <script type="text/javascript">
         $(function() {
             $(document).on('change','#supplier_id',function(){
@@ -80,6 +143,25 @@
                             html += '<option value="'+v.category_id+'">'+v.category.name+'</option>'
                         });
                         $('#category_id').html(html);
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('change','#category_id',function(){
+                var category_id = $(this).val();
+                $.ajax({
+                    url: "{{ route('app.get.product') }}" ,
+                    type: "GET",
+                    data:{category_id:category_id},
+                    success: function(data) {
+                        var html = '<option value="">Select Product</option>';
+                        $.each(data,function(key,v) {
+                            html += '<option value="'+v.id+'">'+v.name+'</option>'
+                        });
+                        $('#product_id').html(html);
                     }
                 });
             });
