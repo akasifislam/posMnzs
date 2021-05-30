@@ -13,14 +13,20 @@
                       </h3>
                   </div>
                   <div class="card-body">
-                    <table id="example1" class="table table-sm table-hover table-bordered table-striped">
+                    <table id="example1" class="table table-sm table-responsive table-hover table-bordered table-striped">
                         <thead>
                         <tr>
                           <th>Sl</th>
                           <th>Purchase No</th>
                           <th>Date</th>
+                          <th>Supplier Name</th>
+                          <th>Category</th>
                           <th>Product Name</th>
-                          <th>Unit Key</th>
+                          <th>Description</th>
+                          <th>Quentity</th>
+                          <th>Unit Price</th>
+                          <th>Buying Price</th>
+                          <th>ststus</th>
                           <th>Action</th>
                         </tr>
                         </thead>
@@ -30,8 +36,25 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $purchase->purchase_no }}</td>
                                 <td>{{ $purchase->date }}</td>
+                                <td>{{ $purchase['supplier']['name'] }}</td>
+                                <td>{{ $purchase['category']['name'] }}</td>
                                 <td>{{ $purchase['product']['name'] }}</td>
-                                <td>Null</td>
+                                <td>{{ $purchase->description }}</td>
+                                <td>
+                                  {{ $purchase->buying_qty }}
+                                  {{ $purchase['product']['unit']['name'] }}
+                                </td>
+                                <td>{{ $purchase->unit_price }}</td>
+                                <td>{{ $purchase->buying_price }}</td>
+                                <td>
+                                  @if ($purchase->status==0)
+                                    <span>approve</span>
+                                  @else
+                                    <span>pending</span>
+                                  @endif
+                                  
+                                  
+                                </td>
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('purchase.edit',$purchase->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

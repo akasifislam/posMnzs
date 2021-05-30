@@ -28,16 +28,13 @@ class PurchaseController extends Controller
 
     public function store(Request $request)
     {
-
         if ($request->category_id == null) {
             return redirect()->back()->with('error', 'you do not fuillup form');
         } else {
             $count_category = count($request->category_id);
             for ($i = 0; $i < $count_category; $i++) {
-                // return $request->all();
                 $purchase = new Purchase();
-                // $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
-                $purchase->date = date('Y-m-d', strtotime($request->date));
+                $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
                 $purchase->purchase_no = $request->purchase_no[$i];
                 $purchase->supplier_id = $request->supplier_id[$i];
                 $purchase->category_id = $request->category_id[$i];

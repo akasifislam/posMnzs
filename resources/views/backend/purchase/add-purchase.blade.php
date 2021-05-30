@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="datepicker">Date</label>
-                                <input type="text" name="date" id="datepicker" class="form-control datepicker" placeholder="MM-DD-YYYY" readonly>
+                                <input type="text" name="date" id="date" class="form-control datepicker" placeholder="MM-DD-YYYY" readonly>
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="purchase_no">Purchase No</label>
@@ -173,7 +173,7 @@
     </script>
     <script id="document-template" type="text/x-handlebars-template">
         <tr class="delete_add_more_item" id="delete_add_more_item">
-            <input type="hidden" name="data[]" value="@{{data}}">
+            <input type="hidden" name="date[]" value="@{{date}}">
             <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
             <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
             <td>
@@ -242,6 +242,9 @@
             $('#myForm').validate({
             rules: {
                
+                date: {
+                required: true,
+                },
                 supplier_id: {
                 required: true,
                 },
@@ -276,7 +279,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(function () {
-            $('#datepicker').datepicker({ format: 'dd/mm/yyyy' });
+            $('.datepicker').datepicker({ format: 'dd/mm/yyyy' });
         });
     </script>
 @endsection
