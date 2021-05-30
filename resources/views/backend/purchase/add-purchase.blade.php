@@ -65,13 +65,13 @@
                         <table class="table-sm table-bordered table-striped table-hover" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Product Name</th>
-                                    <th>pcs/kg</th>
-                                    <th>Unit Price</th>
-                                    <th>Description</th>
-                                    <th>Total Price</th>
-                                    <th>Action</th>
+                                    <th width="15%">Category</th>
+                                    <th width="15%">Product Name</th>
+                                    <th width="5%">pcs/kg</th>
+                                    <th width="15%">Unit Price</th>
+                                    <th width="30%">Description</th>
+                                    <th width="15%">Total Price</th>
+                                    <th width="5%">Action</th>
                                 </tr>
                             </thead>
                             <tbody name="addRow" id="addRow">
