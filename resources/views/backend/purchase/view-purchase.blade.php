@@ -31,7 +31,7 @@
                                 <td>{{ $purchase->purchase_no }}</td>
                                 <td>{{ $purchase->date }}</td>
                                 <td>{{ $purchase['product']['name'] }}</td>
-                                <td>{{ $purchase['unit']['name'] }}</td>
+                                <td>Null</td>
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('purchase.edit',$purchase->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

@@ -34,9 +34,10 @@ class PurchaseController extends Controller
         } else {
             $count_category = count($request->category_id);
             for ($i = 0; $i < $count_category; $i++) {
-                return $request->all();
+                // return $request->all();
                 $purchase = new Purchase();
-                $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
+                // $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
+                $purchase->date = date('Y-m-d', strtotime($request->date));
                 $purchase->purchase_no = $request->purchase_no[$i];
                 $purchase->supplier_id = $request->supplier_id[$i];
                 $purchase->category_id = $request->category_id[$i];
@@ -45,6 +46,7 @@ class PurchaseController extends Controller
                 $purchase->unit_price = $request->unit_price[$i];
                 $purchase->buying_price = $request->buying_price[$i];
                 $purchase->description = $request->description[$i];
+                $purchase->status = '0';
                 $purchase->created_by = Auth::user()->id;
                 $purchase->save();
             }
