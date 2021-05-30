@@ -19,13 +19,19 @@
   <!-- jvectormap -->
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datepicker/datepicker3.css">
+  {{-- <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datepicker/datepicker3.css"> --}}
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('backend') }}/plugins/datatables/dataTables.bootstrap4.css">
+
+  <!-- date picker -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- jQuery -->

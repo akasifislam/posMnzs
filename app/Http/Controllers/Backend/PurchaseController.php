@@ -34,21 +34,19 @@ class PurchaseController extends Controller
         } else {
             $count_category = count($request->category_id);
             for ($i = 0; $i < $count_category; $i++) {
-
-                // dd('sgfjbrgh');
-                // $purchase = new Purchase();
-                // $purchase->date = date('m-d-Y', strtotime($request->date[$i]));
-                // $purchase->purchase_no = $request->purchase_no[$i];
-                // $purchase->supplier_id = $request->supplier_id[$i];
-                // $purchase->category_id = $request->category_id[$i];
-                // $purchase->product_id = $request->product_id[$i];
-                // $purchase->buying_qty = $request->buying_qty[$i];
-                // $purchase->unit_price = $request->unit_price[$i];
-                // $purchase->buying_price = $request->buying_price[$i];
-                // $purchase->description = $request->description[$i];
-                // $purchase->created_by = Auth::user()->id;
-                // dd($purchase);
-                // $purchase->save();
+                return $request->all();
+                $purchase = new Purchase();
+                $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
+                $purchase->purchase_no = $request->purchase_no[$i];
+                $purchase->supplier_id = $request->supplier_id[$i];
+                $purchase->category_id = $request->category_id[$i];
+                $purchase->product_id = $request->product_id[$i];
+                $purchase->buying_qty = $request->buying_qty[$i];
+                $purchase->unit_price = $request->unit_price[$i];
+                $purchase->buying_price = $request->buying_price[$i];
+                $purchase->description = $request->description[$i];
+                $purchase->created_by = Auth::user()->id;
+                $purchase->save();
             }
         }
 
