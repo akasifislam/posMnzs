@@ -48,7 +48,7 @@
                                 <td>{{ $purchase->buying_price }}</td>
                                 <td>
                                   @if ($purchase->status==0)
-                                    <span>approve</span>
+                                    <code>approve</code>
                                   @else
                                     <span>pending</span>
                                   @endif
