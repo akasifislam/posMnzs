@@ -32,10 +32,15 @@
                                 <td>{{ $products['category']['name'] }}</td>
                                 <td>{{ $products['supplier']['name'] }}</td>
                                 <td>{{ $products['unit']['name'] }}</td>
+                                @php
+                                    $count_product = App\Model\Purchase::where('product_id',$products->id)->count();
+                                @endphp
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('products.edit',$products->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                      @if ($count_product<1)
                                       <a type="button" id="delete" href="{{ route('products.delete',$products->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                      @endif
                                   </div>
                                 </td>
                               </tr>

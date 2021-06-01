@@ -28,10 +28,15 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $categories->name }}</td>
                                 <td>{{ Auth::user()->name }}</td>
+                                @php
+                                    $count_category = App\Model\Product::where('category_id',$categories->id)->count();
+                                @endphp 
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('categories.edit',$categories->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                      @if ($count_category<1)
                                       <a type="button" id="delete" href="{{ route('categories.delete',$categories->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                      @endif
                                   </div>
                                 </td>
                               </tr>
