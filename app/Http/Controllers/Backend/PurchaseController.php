@@ -10,6 +10,7 @@ use App\Model\Supplier;
 use App\Model\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -48,62 +49,34 @@ class PurchaseController extends Controller
                 $purchase->save();
             }
         }
-
-
-
-
-        // return $request;
-        // $this->validate($request, [
-        //     'name' => 'required|string',
-        //     'supplier_id' => 'required',
-        //     'category_id' => 'required',
-        //     'unit_id' => 'required',
-        // ]);
-        // $unit = Product::create([
-        //     'name' => $request->name,
-        //     'supplier_id' => $request->supplier_id,
-        //     'category_id' => $request->category_id,
-        //     'unit_id' => $request->unit_id,
-        //     'created_by' => Auth::user()->id,
-        // ]);
-
         return redirect()->route('purchase.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
 
-    public function edit($id)
-    {
-        $data['editData'] = Product::find($id);
-        $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
-        $data['categories'] = Category::orderBy('id', 'DESC')->get();
-        $data['units'] = Unit::orderBy('id', 'DESC')->get();
-        return view('backend.purchase.edit-purchase', $data);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'supplier_id' => 'required',
-            'category_id' => 'required',
-            'unit_id' => 'required',
-        ]);
-        $unit = Product::find($id);
-        $unit->update([
-            'name' => $request->name,
-            'supplier_id' => $request->supplier_id,
-            'category_id' => $request->category_id,
-            'unit_id' => $request->unit_id,
-            'updated_by' => Auth::user()->id,
-        ]);
-
-        return redirect()->route('products.view')->with('sfhjvggd', 'dsbhfjdrjsf');
-    }
-
-
     public function destroy(Request $request, $id)
     {
-        $unit = Product::find($id);
-        $unit->delete();
-        return redirect()->route('products.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+        $purchase = Purchase::find($id);
+        $purchase->delete();
+        return redirect()->route('purchase.view')->with('sfhjvggd', 'dsbhfjdrjsf');
+    }
+
+
+    public function pending()
+    {
+        $allData = Purchase::orderBy('id', "DESC")->where('status', 0)->get();
+        return view('backend.purchase.pending.view-pending', compact('allData'));
+    }
+
+    public function approve($id)
+    {
+        $purchase = Purchase::find($id);
+        $product = Product::where('id', $purchase->product_id)->first();
+        $purchase_qty = ((float)($purchase->buying_qty)) + ((float)($product->quentity));
+        $product->quentity = $purchase_qty;
+        if ($product->save()) {
+            DB::table('purchases')
+                ->where('id', $id)
+                ->update(['status' => 1]);
+        }
+        return redirect()->route('purchase.pending.list');
     }
 }

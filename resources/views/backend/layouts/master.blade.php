@@ -251,6 +251,33 @@
   })
 </script>
 <script type="text/javascript">
+  $(function(){
+    $(document).on('click','#approvebtn',function(e){
+      e.preventDefault();
+      var link = $(this).attr("href");
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Approve",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, approve it!'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href= link;
+          Swal.fire(
+            'Approve!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
+
+    })
+  })
+</script>
+<script type="text/javascript">
   $(document).ready(function(){
     $('#image').change(function(e){
       var reader = new FileReader();

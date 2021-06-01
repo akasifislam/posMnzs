@@ -8,8 +8,8 @@
           <section class="col-md-12">
               <div class="card">
                   <div class="card-header">
-                      <h3>Manage Purches
-                        <a class="btn btn-success btn-sm float-right" href="{{ route('purchase.add') }} "> <i class="fa fa-plus-circle"></i> Add</a>
+                      <h3>Pending Purches List
+                        {{-- <a class="btn btn-success btn-sm float-right" href="{{ route('purchase.add') }} "> <i class="fa fa-plus-circle"></i> Add</a> --}}
                       </h3>
                   </div>
                   <div class="card-body">
@@ -17,7 +17,7 @@
                         <thead>
                         <tr>
                           <th>Sl</th>
-                          <th>Purchase No</th>
+                          <th style="width: 4%">Purchase No</th>
                           <th>Date</th>
                           <th>Supplier Name</th>
                           <th>Category</th>
@@ -58,7 +58,7 @@
                                 <td>
                                   @if ($purchase->status== 0)
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                      <a type="button" id="delete" href="{{ route('purchase.delete',$purchase->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                      <a type="button" id="approvebtn" href="{{ route('purchase.approve',$purchase->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-check-circle"></i></a>
                                     </div>
                                   @endif
                                 </td>
