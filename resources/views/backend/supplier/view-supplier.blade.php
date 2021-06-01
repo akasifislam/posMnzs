@@ -32,10 +32,15 @@
                                 <td>{{ $suppliers->email }}</td>
                                 <td>{{ $suppliers->address }}</td>
                                 <td>{{ $suppliers->mobile_no }}</td>
+                                @php
+                                    $count_supplier = App\Model\Product::where('supplier_id',$suppliers->id)->count();
+                                @endphp 
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('suppliers.edit',$suppliers->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                      @if ($count_supplier<1)
                                       <a type="button" id="delete" href="{{ route('suppliers.delete',$suppliers->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                      @endif
                                   </div>
                                 </td>
                               </tr>

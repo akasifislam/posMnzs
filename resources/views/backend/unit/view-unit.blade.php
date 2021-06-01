@@ -28,11 +28,16 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $units->name }}</td>
                                 <td>{{ Auth::user()->name }}</td>
+                                @php
+                                    $count_unit = App\Model\Product::where('unit_id',$units->id)->count();
+                                @endphp 
                                 <td>
                                   <div class="btn-group" role="group" aria-label="Basic example">
                                       <a href="{{ route('units.edit',$units->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                      @if ($count_unit<1) 
                                       <a type="button" id="delete" href="{{ route('units.delete',$units->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                  </div>
+                                    </div>
+                                    @endif
                                 </td>
                               </tr>
                                 
