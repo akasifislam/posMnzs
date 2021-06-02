@@ -86,9 +86,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/approve/{id}', 'Backend\PurchaseController@approve')->name('purchase.approve');
         Route::get('/delete/{id}', 'Backend\PurchaseController@destroy')->name('purchase.delete');
     });
-
+    
     Route::get('/get-category', 'Backend\DefaultController@getCategory')->name('app.get.category');
     Route::get('/get-product', 'Backend\DefaultController@getProduct')->name('app.get.product');
+
+    Route::prefix('invoice')->group(function () {
+        Route::get('/view', 'Backend\InvoiceController@view')->name('invoice.view');
+        Route::get('/add', 'Backend\InvoiceController@add')->name('invoice.add');
+        Route::post('/store', 'Backend\InvoiceController@store')->name('invoice.store');
+        Route::get('/pending', 'Backend\InvoiceController@pending')->name('invoice.pending.list');
+        Route::get('/approve/{id}', 'Backend\InvoiceController@approve')->name('invoice.approve');
+        Route::get('/delete/{id}', 'Backend\InvoiceController@destroy')->name('invoice.delete');
+    });
 });
 
 

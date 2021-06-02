@@ -168,6 +168,29 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item has-treeview {{ ($prefix=='/purchase')? 'menu-open':'' }}">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-cogs"></i>
+            <p>
+              Manage Invoice
+              <i class="fa fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('invoice.view') }}" class="nav-link {{ ($route=='invoice.view') ? 'active':'' }}">
+                <i class="nav-icon fa fa-user"></i>
+                <p>View Invoice</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('invoice.pending.list') }}" class="nav-link {{ ($route=='invoice.pending.list') ? 'active':'' }}">
+                <i class="nav-icon fa fa-user"></i>
+                <p>Approval Invoice</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         
       </ul>
     </nav>
