@@ -43,6 +43,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('backend') }}/plugins/select2/select2.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -204,7 +206,8 @@
  
 <!-- handlebars js -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
+<!-- Select2 -->
+<script src="{{ asset('backend') }}/plugins/select2/select2.full.min.js"></script>
 
 
 
@@ -286,6 +289,11 @@
       }
       reader.readAsDataURL(e.target.files['0']);
     });
+  });
+</script>
+<script>
+  $(function() {
+    $('.select2').select2();
   });
 </script>
 </body>

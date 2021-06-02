@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="name">Suplier Name</label>
-                                <select class="form-control" name="supplier_id" id="supplier_id">
+                                <select class="form-control select2" name="supplier_id" id="supplier_id">
                                     <option value="">Select Supplier</option>
                                     @foreach ($suppliers as $key => $supplier)
                                         <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="name">Categories Name</label>
-                                <select class="form-control" name="category_id" id="category_id">
+                                <select class="form-control select2" name="category_id" id="category_id">
                                     <option value="">Select Category</option>
                                     @foreach ($categories as $key => $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="name">Unit Key</label>
-                                <select class="form-control" name="unit_id" id="unit_id">
+                                <select class="form-control select2" name="unit_id" id="unit_id">
                                     <option value="">Select Unit</option>
                                     @foreach ($units as $key => $unit)
                                         <option value="{{ $unit->id }}">{{ $unit->name }}</option>
