@@ -86,9 +86,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/approve/{id}', 'Backend\PurchaseController@approve')->name('purchase.approve');
         Route::get('/delete/{id}', 'Backend\PurchaseController@destroy')->name('purchase.delete');
     });
-    
+
     Route::get('/get-category', 'Backend\DefaultController@getCategory')->name('app.get.category');
     Route::get('/get-product', 'Backend\DefaultController@getProduct')->name('app.get.product');
+    Route::get('/get-stock', 'Backend\DefaultController@getStock')->name('check.product.stock');
 
     Route::prefix('invoice')->group(function () {
         Route::get('/view', 'Backend\InvoiceController@view')->name('invoice.view');

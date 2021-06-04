@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label for="invoice_no">Invoice No</label>
-                                <input type="text" name="invoice_no" id="invoice_no" class="form-control form-control-sm" placeholder="Purchase No" readonly style="background-color: rgb(191, 235, 195)">
+                                <input type="text" value="{{ $invoice_no }}" name="invoice_no" id="invoice_no" class="form-control form-control-sm" placeholder="Purchase No" readonly style="background-color: rgb(191, 235, 195)">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="datepicker">Date</label>
@@ -203,7 +203,11 @@
                 var product_id = $(this).val();
                 $.ajax({
                     url:"{{ route('check.product.stock') }}",
-                    type: "GET"
+                    type: "GET",
+                    data:{product_id:product_id},
+                    success:function(data){
+                        $('#current_stock_qty').val(data);
+                    }
                 });
             });
         });

@@ -22,9 +22,24 @@ class InvoiceController extends Controller
     }
     public function add(Request $request)
     {
-        $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
+        // $data['categories'] = Category::orderBy('id', 'DESC')->get();
+        // $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
+        // $data['units'] = Unit::orderBy('id', 'DESC')->get();
+        // return view('backend.invoice.add-invoice', $data);
+
+
+
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
+        $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
+        $invoice_data = Invoice::orderBy('id', 'DESC')->first();
+        if ($invoice_data == null) {
+            $firstReg = 0;
+            $data['invoice_no'] = $firstReg + 1;
+        } else {
+            $invoice_data = Invoice::orderBy('id', 'DESC')->first()->invoice_no;
+            $data['invoice_no'] = $invoice_data + 1;
+        }
         return view('backend.invoice.add-invoice', $data);
     }
 
