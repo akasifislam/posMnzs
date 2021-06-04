@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="datepicker">Date</label>
-                                <input type="text" name="date" id="date" class="form-control form-control-sm datepicker" placeholder="MM-DD-YYYY" readonly>
+                                <input type="text" name="date" id="date" class="form-control form-control-sm datepicker" placeholder="MM-DD-YYYY" readonly style="background-color: rgb(191, 235, 195)">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="category_id">Category Name</label>
@@ -45,6 +45,10 @@
                                 <select class="form-control select2" name="product_id" id="product_id">
                                     <option value="">select product</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="product_id">Stock(PCS/KG)</label>
+                                <input type="text" class="form-control form-control-sm" class="current_stock_qty" id="current_stock_qty" readonly style="background-color: rgb(191, 235, 195)">
                             </div>
                             <div class="form-group col-md-12">
                                 <a class="btn btn-primary addeventmore text-white"><i class="fa fa-plus"> Add Item </i></a>
@@ -195,19 +199,11 @@
     </script>
     <script type="text/javascript">
         $(function() {
-            $(document).on('change','#supplier_id',function(){
-                var supplier_id = $(this).val();
+            $(document).on('change','#product_id',function() {
+                var product_id = $(this).val();
                 $.ajax({
-                    url: "{{ route('app.get.category') }}" ,
-                    type: "GET",
-                    data:{supplier_id:supplier_id},
-                    success: function(data) {
-                        var html = '<option value="">Select Category</option>';
-                        $.each(data,function(key,v) {
-                            html += '<option value="'+v.category_id+'">'+v.category.name+'</option>'
-                        });
-                        $('#category_id').html(html);
-                    }
+                    url:"{{ route('check.product.stock') }}",
+                    type: "GET"
                 });
             });
         });
