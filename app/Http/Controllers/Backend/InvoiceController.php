@@ -25,7 +25,7 @@ class InvoiceController extends Controller
         $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
-        return view('backend.purchase.add-purchase', $data);
+        return view('backend.invoice.add-invoice', $data);
     }
 
     public function store(Request $request)

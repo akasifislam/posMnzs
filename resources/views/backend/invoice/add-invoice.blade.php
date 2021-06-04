@@ -12,38 +12,32 @@
                           @if(isset($editData))
                           Edit Supplier 
                           @else
-                          Add Purches
+                          Add Invoice
                           @endif
 
-                        <a class="btn btn-success btn-sm float-right" href="{{ route('purchase.view') }} "> <i class="fa fa-list"></i> Purches List</a>
+                        <a class="btn btn-success btn-sm float-right" href="{{ route('invoice.view') }} "> <i class="fa fa-list"></i> Invoice List</a>
                       </h3>
                       
                   </div>
                   <div class="card-body">
-                    {{-- <form action="{{ route('purchase.store') }}" method="POST" id="myForm">
+                    {{-- <form action="{{ route('invoice.store') }}" method="POST" id="myForm">
                         @csrf --}}
                         <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="invoice_no">Invoice No</label>
+                                <input type="text" name="invoice_no" id="invoice_no" class="form-control form-control-sm" placeholder="Purchase No" readonly style="background-color: rgb(191, 235, 195)">
+                            </div>
                             <div class="form-group col-md-4">
                                 <label for="datepicker">Date</label>
-                                <input type="text" name="date" id="date" class="form-control datepicker" placeholder="MM-DD-YYYY" readonly>
-                            </div>
-                            <div class="form-group col-md-8">
-                                <label for="purchase_no">Purchase No</label>
-                                <input type="text" name="purchase_no" id="purchase_no" class="form-control" placeholder="Purchase No">
+                                <input type="text" name="date" id="date" class="form-control form-control-sm datepicker" placeholder="MM-DD-YYYY" readonly>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="supplier_id">Supplier Name</label>
-                                <select class="form-control select2" name="supplier_id" id="supplier_id">
-                                    <option value="">Select Supplier</option>
-                                    @foreach ($suppliers as $key => $supplier)
-                                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                    @endforeach 
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="category_id">Categories Name</label>
+                                <label for="category_id">Category Name</label>
                                 <select class="form-control select2" name="category_id" id="category_id">
                                     <option value="">Select Category</option>
+                                    @foreach ($categories as $key => $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach 
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
@@ -60,7 +54,7 @@
                     {{-- </form> --}}
                   </div>
                   <div class="card-body">
-                    <form action="{{ route('purchase.store') }}" method="POST" id="myForm">
+                    <form action="{{ route('invoice.store') }}" method="POST" id="myForm">
                         @csrf
                         <table class="table-sm table-bordered table-striped table-hover" style="width: 100%">
                             <thead>
