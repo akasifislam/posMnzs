@@ -87,7 +87,7 @@
                         </table>
                         <br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="storeButton">Purchase Store</button>
+                            <button type="submit" class="btn btn-success" id="storeButton">Invoice Store</button>
                         </div>
                         </form>
                   </div>
