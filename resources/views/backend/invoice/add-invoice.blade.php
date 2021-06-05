@@ -76,9 +76,13 @@
                             </tbody>
                             <tbody>
                                 <tr>
+                                    <td colspan="4">Discount</td>
+                                    <td><input type="text" class="form-control form-control-sm text-right" name="discount_amount" id="discount_amount" style="background-color: hsl(200, 3%, 66%)" placeholder="Discount Amount"></td>
+                                </tr>
+                                <tr>
                                     <td colspan="4"></td>
                                     <td>
-                                        <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
+                                        <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #42dbc2">
                                     </td>
                                     <td></td>
                                 </tr>
@@ -152,6 +156,9 @@
                 var qty = $(this).closest("tr").find("input.selling_qty").val();
                 var total = unit_price * qty;
                 $(this).closest("tr").find("input.selling_price").val(total);
+                $('#discount_amount').tigger('keyup');
+            });
+            $(document).on('keyup','#discount_amount',function() {
                 totalAmountPrice();
             });
             // calcularate sum of amount
@@ -163,6 +170,10 @@
                         sum += parseFloat(value);
                     }
                 });
+                var discount_amount = parseFloat($('#discount_amount').val());
+                if(!isNaN(discount_amount) && discount_amount.length!=0){
+                    sum-=parseFloat(discount_amount);
+                }
                 $('#estimated_amount').val(sum);
             }
         });
