@@ -67,7 +67,6 @@
                                     <th width="15%">Product Name</th>
                                     <th width="5%">pcs/kg</th>
                                     <th width="15%">Unit Price</th>
-                                    <th width="30%">Description</th>
                                     <th width="15%">Total Price</th>
                                     <th width="5%">Action</th>
                                 </tr>
@@ -77,7 +76,7 @@
                             </tbody>
                             <tbody>
                                 <tr>
-                                    <td colspan="5"></td>
+                                    <td colspan="4"></td>
                                     <td>
                                         <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #D8FDBA">
                                     </td>
@@ -85,6 +84,14 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <div class="">
+                                    <textarea name="description" id="description" class="form-control" placeholder="write description"></textarea>
+                                </div>
+                            </div>
+                        </div>
                         <br>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" id="storeButton">Invoice Store</button>
@@ -113,14 +120,6 @@
                     $.notify("Date is required", {globalPosition: 'top-right',className:'error'});
                     return false;
                 }
-                if (purchase_no=='') {
-                    $.notify("Purchase no required", {globalPosition: 'top-right',className:'error'});
-                    return false;
-                }
-                if (supplier_id=='') {
-                    $.notify("Supplier id required", {globalPosition: 'top-right',className:'error'});
-                    return false;
-                }
                 if (category_id=='') {
                     $.notify("Category Id required", {globalPosition: 'top-right',className:'error'});
                     return false;
@@ -134,7 +133,7 @@
             var template = Handlebars.compile(source);
             var data = {
                 date:date,
-                purchase_no:purchase_no,
+                invoice_no:invoice_no,
                 supplier_id:supplier_id,
                 category_id:category_id,
                 category_name:category_name,
@@ -148,17 +147,17 @@
             $(this).closest(".delete_add_more_item").remove();
             totalAmountPrice();
         });
-            $(document).on("keyup click",'.unit_price,.buying_qty',function() {
+            $(document).on("keyup click",'.unit_price,.selling_qty',function() {
                 var unit_price = $(this).closest("tr").find("input.unit_price").val();
-                var qty = $(this).closest("tr").find("input.buying_qty").val();
+                var qty = $(this).closest("tr").find("input.selling_qty").val();
                 var total = unit_price * qty;
-                $(this).closest("tr").find("input.buying_price").val(total);
+                $(this).closest("tr").find("input.selling_price").val(total);
                 totalAmountPrice();
             });
             // calcularate sum of amount
             function totalAmountPrice(){
                 var sum=0;
-                $(".buying_price").each(function() {
+                $(".selling_price").each(function() {
                     var value = $(this).val();
                     if (!isNaN(value) && value.length !=0) {
                         sum += parseFloat(value);
@@ -171,9 +170,8 @@
     </script>
     <script id="document-template" type="text/x-handlebars-template">
         <tr class="delete_add_more_item" id="delete_add_more_item">
-            <input type="hidden" name="date[]" value="@{{date}}">
-            <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
-            <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
+            <input type="hidden" name="date" value="@{{date}}">
+            <input type="hidden" name="invoice_no[]" value="@{{invoice_no}}">
             <td>
                 <input type="hidden" name="category_id[]" value="@{{category_id}}">
                 @{{category_name}}
@@ -183,16 +181,13 @@
                 @{{ product_name }}
             </td>
             <td>
-                <input type="number" min="1" class="form-control form-control-sm text-right buying_qty" name="buying_qty[]" value="1">
+                <input type="number" min="1" class="form-control form-control-sm text-right selling_qty" name="selling_qty[]" value="1">
             </td>
             <td>
                 <input type="number" min="1" class="form-control form-control-sm text-right unit_price" name="unit_price[]" value="">
             </td>
             <td>
-                <input type="text" name="description[]" class="form-control form-control-sm">
-            </td>
-            <td>
-                <input class="form-control form-control-sm text-right buying_price" name="buying_price[]" value="0" readonly>
+                <input class="form-control form-control-sm text-right selling_price" name="selling_price[]" value="0" readonly>
             </td>
             <td> <i class="btn btn-danger btn-sm fa fa-window-close removeeventmore"></i> </td>
         </tr>
