@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Model\Category;
+use App\Model\Customer;
 use App\Model\Invoice;
 use App\Model\Product;
 use App\Model\Purchase;
@@ -32,6 +33,7 @@ class InvoiceController extends Controller
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
         $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
+        $data['customers'] = Customer::orderBy('id', 'DESC')->get();
         $invoice_data = Invoice::orderBy('id', 'DESC')->first();
         if ($invoice_data == null) {
             $firstReg = 0;

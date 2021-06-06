@@ -92,8 +92,35 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <div class="">
-                                    <textarea name="description" id="description" class="form-control" placeholder="write description"></textarea>
+                                    <textarea name="description" id="description" class="form-control form-control-sm" placeholder="write description"></textarea>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="paid_status">Paid Status</label>
+                                <select name="paid_status" id="paid_status" class="form-control form-control-sm select2">
+                                    <option value=""> -- select status -- </option> 
+                                    <option value="full_paid">Full paid</option> 
+                                    <option value="full_due">Full due</option>
+                                    <option value="partial_paid">Partial paid</option>
+                                </select>
+                                <input style="display: none" type="text" name="paid_amount" class="form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="customer_id">Customer Name</label>
+                                <select name="customer_id" id="customer_id" class="form-control form-control-sm select2">
+                                    <option value=""> -- select customer -- </option>
+                                    <option value="0">New Customer </option>
+                                    @foreach ($customers as $key=>$customer) 
+                                        <option value="{{ $customer->id }}">{{ $customer->name }} ({{ $customer->mobile_no }},{{ $customer->address }})</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row new_customer">
+                            <div class="form-group col-md-4">
+                                <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Wtrite Customer Name">
                             </div>
                         </div>
                         <br>
