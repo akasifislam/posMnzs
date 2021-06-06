@@ -99,17 +99,17 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="paid_status">Paid Status</label>
-                                <select name="paid_status" id="paid_status" class="form-control form-control-sm select2">
+                                <select name="paid_status" id="paid_status" class="form-control form-control-sm">
                                     <option value=""> -- select status -- </option> 
                                     <option value="full_paid">Full paid</option> 
                                     <option value="full_due">Full due</option>
                                     <option value="partial_paid">Partial paid</option>
                                 </select>
-                                <input style="display: none" type="text" name="paid_amount" class="form-control form-control-sm">
+                                <input style="display: none;background-color: #bbdcf3" type="number" placeholder="Enter Pirtial Partial" name="paid_amount" class="mt-3 form-control form-control-sm paid_amount">
                             </div>
                             <div class="form-group col-md-8">
                                 <label for="customer_id">Customer Name</label>
-                                <select name="customer_id" id="customer_id" class="form-control form-control-sm select2">
+                                <select name="customer_id" id="customer_id" class="form-control form-control-sm">
                                     <option value=""> -- select customer -- </option>
                                     <option value="0">New Customer </option>
                                     @foreach ($customers as $key=>$customer) 
@@ -118,9 +118,15 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row new_customer">
+                        <div class="form-row new_customer" style="display: none">
                             <div class="form-group col-md-4">
                                 <input type="text" name="name" id="name" class="form-control form-control-sm" placeholder="Wtrite Customer Name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="tel" name="mobile_no" id="mobile_no" class="form-control form-control-sm" placeholder="Wtrite Customer mobile">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="address" name="address" id="address" class="form-control form-control-sm" placeholder="Wtrite Customer Address">
                             </div>
                         </div>
                         <br>
@@ -302,6 +308,33 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+        $(document).on('change',"#paid_status",function() {
+            var paid_status = $(this).val();
+            if (paid_status=='partial_paid') {
+                $('.paid_amount').show();
+            }else{
+                $('.paid_amount').hide();
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).on('change',"#customer_id",function() {
+            var customer_id = $(this).val();
+            if (customer_id=='0') {
+                $('.new_customer').show();
+            }else{
+                $('.new_customer').hide();
+            }
+        })
+    </script>
+
+
+
+
+
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
