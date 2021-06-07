@@ -76,11 +76,11 @@
                             </tbody>
                             <tbody>
                                 <tr>
-                                    <td colspan="4">Discount</td>
-                                    <td><input type="text" class="form-control form-control-sm text-right" name="discount_amount" id="discount_amount" style="background-color: hsl(200, 3%, 66%)" placeholder="Discount Amount"></td>
+                                    <td class="bg-success text-right" colspan="4">Discount</td>
+                                    <td><input type="number" class="form-control form-control-sm text-right" name="discount_amount" id="discount_amount" style="background-color: hsl(200, 3%, 66%)" placeholder="Discount Amount"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td>
+                                    <td class="bg-primary text-right" colspan="4">Grand Total</td>
                                     <td>
                                         <input type="text" name="estimated_amount" value="0" id="estimated_amount" class="form-control form-control-sm text-right estimated_amount" readonly style="background-color: #42dbc2">
                                     </td>
