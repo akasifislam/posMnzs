@@ -23,13 +23,6 @@ class InvoiceController extends Controller
     }
     public function add(Request $request)
     {
-        // $data['categories'] = Category::orderBy('id', 'DESC')->get();
-        // $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
-        // $data['units'] = Unit::orderBy('id', 'DESC')->get();
-        // return view('backend.invoice.add-invoice', $data);
-
-
-
         $data['categories'] = Category::orderBy('id', 'DESC')->get();
         $data['suppliers'] = Supplier::orderBy('id', 'DESC')->get();
         $data['units'] = Unit::orderBy('id', 'DESC')->get();
@@ -48,24 +41,9 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         if ($request->category_id == null) {
-            return redirect()->back()->with('error', 'you do not fuillup form');
-        } else {
-            $count_category = count($request->category_id);
-            for ($i = 0; $i < $count_category; $i++) {
-                $purchase = new Purchase();
-                $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
-                $purchase->purchase_no = $request->purchase_no[$i];
-                $purchase->supplier_id = $request->supplier_id[$i];
-                $purchase->category_id = $request->category_id[$i];
-                $purchase->product_id = $request->product_id[$i];
-                $purchase->buying_qty = $request->buying_qty[$i];
-                $purchase->unit_price = $request->unit_price[$i];
-                $purchase->buying_price = $request->buying_price[$i];
-                $purchase->description = $request->description[$i];
-                $purchase->status = '0';
-                $purchase->created_by = Auth::user()->id;
-                $purchase->save();
-            }
+            dd('eeee');
+        }else{
+            dd('sfjgkbd');
         }
         return redirect()->route('purchase.view')->with('sfhjvggd', 'dsbhfjdrjsf');
     }
