@@ -23,15 +23,15 @@
                     {{-- <form action="{{ route('invoice.store') }}" method="POST" id="myForm">
                         @csrf --}}
                         <div class="form-row">
-                            <div class="form-group col-md-2">
+                            <div class="form-group col-md-3">
                                 <label for="invoice_no">Invoice No</label>
                                 <input type="text" value="{{ $invoice_no }}" name="invoice_no" id="invoice_no" class="form-control form-control-sm" placeholder="Purchase No" readonly style="background-color: rgb(191, 235, 195)">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-2">
                                 <label for="datepicker">Date</label>
-                                <input type="text" name="date" id="date" class="form-control form-control-sm datepicker" placeholder="MM-DD-YYYY" readonly style="background-color: rgb(191, 235, 195)">
+                                <input type="text" value="{{ $currentDate }}" name="date" id="date" class="form-control form-control-sm datepicker" placeholder="MM-DD-YYYY" readonly style="background-color: rgb(191, 235, 195)">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-7">
                                 <label for="category_id">Category Name</label>
                                 <select class="form-control select2" name="category_id" id="category_id">
                                     <option value="">Select Category</option>
@@ -60,6 +60,7 @@
                   <div class="card-body">
                     <form action="{{ route('invoice.store') }}" method="POST" id="myForm">
                         @csrf
+                        @method('POST')
                         <table class="table-sm table-bordered table-striped table-hover" style="width: 100%">
                             <thead>
                                 <tr>
@@ -147,7 +148,7 @@
         $(document).ready(function () {
             $(document).on("click",".addeventmore",function() {
                 var date = $('#date').val(); 
-                var purchase_no = $('#purchase_no').val();
+                var invoice_no = $('#invoice_no').val();
                 var supplier_id = $('#supplier_id').val();
                 var category_id = $('#category_id').val();
                 var category_name = $('#category_id').find('option:selected').text(); 
