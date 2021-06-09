@@ -60,7 +60,6 @@
                   <div class="card-body">
                     <form action="{{ route('invoice.store') }}" method="POST" id="myForm">
                         @csrf
-                        @method('POST')
                         <table class="table-sm table-bordered table-striped table-hover" style="width: 100%">
                             <thead>
                                 <tr>
